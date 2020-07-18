@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import "normalize.css";
 
 // Your web app's Firebase configuration
 var firebase = require("firebase");
