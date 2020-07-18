@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "normalize.css";
+import router from './router'
 
 // Your web app's Firebase configuration
 var firebase = require("firebase");
@@ -17,5 +18,6 @@ firebase.initializeApp({
 Vue.config.productionTip = false;
 
 new Vue({
-    render: (h) => h(App),
+    router,
+    render: (h) => h(App)
 }).$mount("#app");
