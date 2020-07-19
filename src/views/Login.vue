@@ -56,8 +56,8 @@ export default {
             firebase
                 .auth()
                 .signInWithEmailAndPassword(this.email, this.password)
-                .then(() => {
-                    console.log("pavyko");
+                .then((userCredential) => {
+                    alert(userCredential.user.uid);
                 });
         },
     },
