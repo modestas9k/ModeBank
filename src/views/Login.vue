@@ -17,6 +17,7 @@
                 <div class="inputBox">
                     <label for="password">Password</label>
                     <input
+                        v-model="password"
                         type="password"
                         id="password"
                         name="password"
@@ -25,7 +26,7 @@
                     />
                 </div>
                 <div class="text-align">
-                    <button type="submit">Login</button>
+                    <button v-on:click="login" type="submit">Login</button>
                 </div>
                 <div>
                     <h4>Or</h4>
@@ -37,24 +38,35 @@
 </template>
 
 <script>
-// import * as firebase from "firebase/app";
+import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
 export default {
     name: "Login",
+
     data() {
         return {
             email: "",
             password: "",
         };
     },
+    methods: {
+        login() {
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(this.email, this.password)
+                .then(() => {
+                    console.log("pavyko");
+                });
+        },
+    },
 };
 </script>
 
 <style scoped>
 form {
-    background: #eee;
+    background: rgb(240, 240, 240);
     display: flex;
     flex-direction: column;
     max-width: 700px;
@@ -62,9 +74,15 @@ form {
     border-radius: 10px;
     padding: 20px;
     align-content: center;
+    box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
+    -webkit-box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
+    -moz-box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
+}
+* {
+    box-sizing: border-box;
 }
 .inputBox {
-    max-width: 250px;
+    width: 250px;
     margin: 10px auto;
     text-align: start;
 }
@@ -73,11 +91,22 @@ label {
     width: 100%;
 }
 input {
-    padding: 10px 3px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 3px;
 }
 button {
     padding: 10px 30px;
-    border-radius: 5px;
+    border-radius: 50px;
+    border: none;
+    background: orangered;
+    color: white;
+    font-weight: 700;
+    margin-top: 15px;
+}
+button:hover {
+    background: rgb(192, 57, 8);
 }
 .text-align {
     text-align: center;
