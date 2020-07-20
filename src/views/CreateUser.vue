@@ -74,7 +74,9 @@ form {
     border-radius: 10px;
     padding: 20px;
     align-content: center;
-    box-shadow: 9px 10px 20px -13px rgba(0, 0, 0, 0.68);
+    box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
+    -webkit-box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
+    -moz-box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
 }
 * {
     box-sizing: border-box;
