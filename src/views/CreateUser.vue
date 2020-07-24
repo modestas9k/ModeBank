@@ -1,7 +1,10 @@
 <template>
-  <div id="login">
+  <div id="createUser">
     <div class="wrapper">
-      <form name="login">
+      <div>
+        <h3>{{ errorMessage }}</h3>
+      </div>
+      <form name="createAccount">
         <h1>Create Account</h1>
         <div class="inputBox">
           <label for="email">Email</label>
@@ -26,7 +29,7 @@
           />
         </div>
         <div class="text-align">
-          <button v-on:click="login" type="submit">Create</button>
+          <button v-on:click.prevent="create" type="submit">Create</button>
         </div>
       </form>
     </div>
@@ -39,21 +42,27 @@ import "firebase/auth";
 import "firebase/firestore";
 
 export default {
-  name: "Login",
+  name: "createUser",
 
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errorMessage: ""
     };
   },
   methods: {
-    login() {
+    create() {
       firebase
         .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(userCredential => {
-          alert(userCredential.user.uid);
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .catch(error => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          this.errorMessage = error.message;
+          console.log(errorCode);
+          console.log(this.errorMessage);
+          // ...
         });
     }
   }
