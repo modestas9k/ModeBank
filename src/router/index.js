@@ -14,14 +14,12 @@ const routes = [
     {
         path: "/home",
         name: "Home",
-        component: () =>
-            import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+        component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     },
     {
         path: "/about",
         name: "About",
-        component: () =>
-            import(/* webpackChunkName: "about" */ "../views/About.vue"),
+        component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
     {
         path: "/login",
@@ -32,12 +30,12 @@ const routes = [
         path: "/account",
         name: "Account",
         component: Account,
+        meta: { requiresAuth: true },
     },
     {
         path: "/createUser",
         name: "createUser",
-        component: () =>
-            import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
+        component: () => import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
     },
 ];
 
