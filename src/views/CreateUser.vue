@@ -1,8 +1,11 @@
 <template>
   <div id="createUser">
     <div class="wrapper">
-      <form name v-on:submit.prevent="  signIn()">
-        <h1>Login</h1>
+      <div>
+        <h3>{{ errorMessage }}</h3>
+      </div>
+      <form name="createAccount" v-on:submit.prevent="create">
+        <h1>Create Account</h1>
         <div class="inputBox">
           <label for="email">Email</label>
           <input
@@ -26,11 +29,11 @@
           />
         </div>
         <div class="text-align">
-          <button type="submit">Login</button>
+          <button type="submit">Create</button>
         </div>
         <div>
           <h4>Or</h4>
-          <router-link to="/createUser">Create Account</router-link>
+          <router-link to="/login">Login</router-link>
         </div>
       </form>
     </div>
@@ -48,16 +51,22 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errorMessage: ""
     };
   },
   methods: {
-    signIn() {
+    create() {
       firebase
         .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(userCredential => {
-          console.log(userCredential.user.uid);
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .catch(error => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          this.errorMessage = error.message;
+          console.log(errorCode);
+          console.log(this.errorMessage);
+          // ...
         });
     }
   }
