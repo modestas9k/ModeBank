@@ -15,17 +15,20 @@ const routes = [
     {
         path: "/home",
         name: "Home",
-        component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+        component: () =>
+            import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     },
     {
         path: "/about",
         name: "About",
-        component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
     {
         path: "/login",
         name: "Login",
         component: Login,
+        beforeEnter: ifNotAuthenticated,
     },
     {
         path: "/account",
@@ -36,7 +39,8 @@ const routes = [
     {
         path: "/createUser",
         name: "createUser",
-        component: () => import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
     },
 ];
 
@@ -57,5 +61,13 @@ router.beforeEach((to, from, next) => {
         }
     });
 });
+
+const ifNotAuthenticated = (to, from, next) => {
+    if (firebase.auth().meta.requiresAuth) {
+        next("/home");
+        return;
+    }
+    next("/home");
+};
 
 export default router;

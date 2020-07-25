@@ -51,6 +51,7 @@
                         </div>
                     </div>
                     <div class="navbar-item" v-else>
+                        <div class="navbar-item">{{ user.displayName }}</div>
                         <div class="buttons">
                             <router-link
                                 to="/account"
@@ -77,16 +78,16 @@ export default {
     name: "Navigation",
     data() {
         return {
+            user: null,
             loggedIn: false,
             burgerMenuOpen: false,
         };
     },
     beforeMount() {
-        firebase
-            .auth()
-            .onAuthStateChanged((user) =>
-                user ? (this.loggedIn = true) : (this.loggedIn = false)
-            );
+        firebase.auth().onAuthStateChanged((user) => {
+            this.user = user;
+            this.loggedIn = Boolean(user);
+        });
     },
 
     methods: {
