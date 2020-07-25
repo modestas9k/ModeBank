@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import firebase from "firebase/app";
 import Login from "../views/Login.vue";
 import Account from "../views/Account.vue";
+import "../../node_modules/bulma/css/bulma.min.css";
 
 Vue.use(VueRouter);
 
