@@ -5,7 +5,7 @@
       <nav>
         <router-link to="/home">Home</router-link>
         <router-link to="/about">About</router-link>
-        <div class="flex" v-if="!loggetIn">
+        <div class="flex" v-if="!loggedIn">
           <router-link to="/Login">Login</router-link>
         </div>
         <div class="flex" v-else>
@@ -25,14 +25,14 @@ export default {
   name: "Navigation",
   data() {
     return {
-      loggetIn: false
+      loggedIn: false
     };
   },
   beforeMount() {
     firebase
       .auth()
       .onAuthStateChanged(user =>
-        user ? (this.loggetIn = true) : (this.loggetIn = false)
+        user ? (this.loggedIn = true) : (this.loggedIn = false)
       );
   },
 
@@ -55,7 +55,7 @@ img {
 }
 .wrapper {
   display: flex;
-  width: 960px;
+  max-width: 960px;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;

@@ -1,7 +1,7 @@
 <template>
   <div id="createUser">
     <div class="wrapper">
-      <form name>
+      <form name v-on:submit.prevent="  signIn()">
         <h1>Login</h1>
         <div class="inputBox">
           <label for="email">Email</label>
@@ -26,7 +26,7 @@
           />
         </div>
         <div class="text-align">
-          <button v-on:click.prevent="  signIn()" type="submit">Login</button>
+          <button type="submit">Login</button>
         </div>
         <div>
           <h4>Or</h4>

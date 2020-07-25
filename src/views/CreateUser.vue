@@ -4,7 +4,7 @@
       <div>
         <h3>{{ errorMessage }}</h3>
       </div>
-      <form name="createAccount">
+      <form name="createAccount" v-on:submit.prevent="create">
         <h1>Create Account</h1>
         <div class="inputBox">
           <label for="email">Email</label>
@@ -29,7 +29,11 @@
           />
         </div>
         <div class="text-align">
-          <button v-on:click.prevent="create" type="submit">Create</button>
+          <button type="submit">Create</button>
+        </div>
+        <div>
+          <h4>Or</h4>
+          <router-link to="/login">Login</router-link>
         </div>
       </form>
     </div>
@@ -79,9 +83,7 @@ form {
   border-radius: 10px;
   padding: 20px;
   align-content: center;
-  box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
-  -webkit-box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
-  -moz-box-shadow: 9px 10px 33px -2px rgba(0, 0, 0, 0.68);
+  box-shadow: 9px 10px 20px -13px rgba(0, 0, 0, 0.68);
 }
 * {
   box-sizing: border-box;
