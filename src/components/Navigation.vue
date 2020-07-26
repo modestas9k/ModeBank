@@ -1,5 +1,5 @@
 <template>
-    <div id="Navigation">
+    <div id="Navigation" class="box py-0 ">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <router-link class="navbar-item" to="/home">
@@ -107,8 +107,8 @@ export default {
     align-items: center;
     justify-content: center;
 }
-#Navigation {
+/* #Navigation {
     background: #eee;
     box-shadow: 0px 10px 10px -13px rgba(0, 0, 0, 0.68);
-}
+} */
 </style>
