@@ -28,7 +28,9 @@ const routes = [
         path: "/login",
         name: "Login",
         component: Login,
-        beforeEnter: ifNotAuthenticated,
+        meta: {
+            noRequiresAuth: true,
+        },
     },
     {
         path: "/account",
@@ -41,6 +43,9 @@ const routes = [
         name: "createUser",
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
+        meta: {
+            noRequiresAuth: true,
+        },
     },
 ];
 
@@ -56,18 +61,15 @@ router.beforeEach((to, from, next) => {
             next({
                 path: "/login",
             });
+        } else if (
+            user &&
+            to.matched.some((record) => record.meta.noRequiresAuth)
+        ) {
+            next("/home");
         } else {
             next();
         }
     });
 });
-
-const ifNotAuthenticated = (to, from, next) => {
-    if (firebase.auth().meta.requiresAuth) {
-        next("/home");
-        return;
-    }
-    next("/home");
-};
 
 export default router;
