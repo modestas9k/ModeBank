@@ -15,17 +15,22 @@ const routes = [
     {
         path: "/home",
         name: "Home",
-        component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+        component: () =>
+            import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     },
     {
         path: "/about",
         name: "About",
-        component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
     {
         path: "/login",
         name: "Login",
         component: Login,
+        meta: {
+            noRequiresAuth: true,
+        },
     },
     {
         path: "/account",
@@ -36,7 +41,11 @@ const routes = [
     {
         path: "/createUser",
         name: "createUser",
-        component: () => import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/CreateUser.vue"),
+        meta: {
+            noRequiresAuth: true,
+        },
     },
 ];
 
@@ -52,6 +61,11 @@ router.beforeEach((to, from, next) => {
             next({
                 path: "/login",
             });
+        } else if (
+            user &&
+            to.matched.some((record) => record.meta.noRequiresAuth)
+        ) {
+            next("/home");
         } else {
             next();
         }
