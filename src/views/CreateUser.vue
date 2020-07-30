@@ -63,7 +63,7 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .catch((error) => {
-          if (error.code === "auth/wrong-password") {
+          if (["auth/wrong-password", "auth/weak-password"].includes(error.code)) {
             this.errorPassword = error.message;
           } else {
             this.errorMessage = error.message;
