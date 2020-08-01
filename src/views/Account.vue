@@ -2,10 +2,10 @@
     <div class="accout section">
         <div class="container">
             <div class="box">
-                <h1 class="title is-pulled-left">Account</h1>
-                <div v-if="change" class="field has-addons is-pulled-right">
-                    <div class="control ">
-                        <span class="subtitle  mr-3">
+                <h1 class="title">Account</h1>
+                <div v-if="change" class="field has-addons ">
+                    <div class=" control ">
+                        <span class="subtitle mr-3">
                             {{ name }}
                         </span>
                     </div>
@@ -13,7 +13,7 @@
                         <button
                             type="button"
                             v-on:click="change = !change"
-                            class="button  is-small"
+                            class="button  "
                         >
                             Change
                         </button>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="field">
-                    <span>Balance: {{ balance }} €</span>
+                    <span class="subtitle">Balance: {{ balance }} €</span>
                 </div>
                 <div class="buttons is-centered">
                     <button type="button" class="button is-primary">
@@ -62,7 +62,7 @@ export default {
         return {
             name: "",
             change: true,
-            balance: "",
+            balance: 0,
         };
     },
     methods: {
@@ -91,4 +91,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.box {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.align-center {
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+</style>
